@@ -3,7 +3,7 @@ import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useAuth } from "../components/auth";
 import Link from "next/link";
-const login = () => {
+const Login = () => {
   const { token, setToken, setUsername } = useAuth();
 
   // console.log(token)
@@ -16,7 +16,7 @@ const login = () => {
 
   const [password, setPassword] = useState("");
 
-  function Login() {
+  function login() {
     // console.log("login");
     axios
       .post("https://diary-app-ash.herokuapp.com/login", {
