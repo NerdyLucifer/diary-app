@@ -81,41 +81,45 @@ const Index = () => {
   // console.log(posts)
   return (
     <>
-      <button type="button" onClick={handleLogout}>
-        Log out
-      </button>
-      <h2>Hello {username}</h2>
-      <div style={{ margin: "auto", width: "80%" }}>
-        <form >
-          <input
-            type="text"
-            placeholder="Enter the new post"
-            value={newPost}
-            onChange={(e) => setNewPost(e.target.value)}
-          />
-          <button type="button" onClick={addPost}>
-            Submit
+      {token && (
+        <>
+          <button type="button" onClick={handleLogout}>
+            Log out
           </button>
-        </form>
-
-        <h3>Posts</h3>
-        {posts.length === 0 ? (
-          <h3 style={{ color: "red" }}>No posts</h3>
-        ) : (
-          posts.map((post) => {
-            return (
-              <PostItem
-                key={post.id}
-                postID={post.id}
-                date={post.date}
-                content={post.content}
-                setPosts={setPosts}
-                deletePost={deletePost}
+          <h2>Hello {username}</h2>
+          <div style={{ margin: "auto", width: "80%" }}>
+            <form>
+              <input
+                type="text"
+                placeholder="Enter the new post"
+                value={newPost}
+                onChange={(e) => setNewPost(e.target.value)}
               />
-            );
-          })
-        )}
-      </div>
+              <button type="button" onClick={addPost}>
+                Submit
+              </button>
+            </form>
+
+            <h3>Posts</h3>
+            {posts.length === 0 ? (
+              <h3 style={{ color: "red" }}>No posts</h3>
+            ) : (
+              posts.map((post) => {
+                return (
+                  <PostItem
+                    key={post.id}
+                    postID={post.id}
+                    date={post.date}
+                    content={post.content}
+                    setPosts={setPosts}
+                    deletePost={deletePost}
+                  />
+                );
+              })
+            )}
+          </div>
+        </>
+      )}
     </>
   );
 };

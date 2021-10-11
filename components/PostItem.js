@@ -5,8 +5,8 @@ const PostItem = ({ postID, content, date, deletePost,setPosts }) => {
   const [isEdit, setIsEdit] = useState(false);
   const {token}=useAuth();
   const [newContent,setNewContent]=useState(content)
-  const editPost=(postID)=>{
-    axios({
+  const editPost=async (postID)=>{
+    await axios({
         method: "put",
         url: "https://diary-app-ash.herokuapp.com/" + postID,
         headers: {
@@ -16,8 +16,8 @@ const PostItem = ({ postID, content, date, deletePost,setPosts }) => {
             content:newContent
         }
       })
-        .then((res) => {
-          setPosts(res.data)
+        .then(async (res) => {
+          await setPosts(res.data)
         })
         .catch((err) => {
           console.log("Error....");
