@@ -86,7 +86,7 @@ const Index = () => {
       </button>
       <h2>Hello {username}</h2>
       <div style={{ margin: "auto", width: "80%" }}>
-        <form action="post">
+        <form >
           <input
             type="text"
             placeholder="Enter the new post"
