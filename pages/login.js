@@ -16,7 +16,7 @@ const login = () => {
 
   const [password, setPassword] = useState("");
 
-  function login() {
+  function Login() {
     // console.log("login");
     axios
       .post("https://diary-app-ash.herokuapp.com/login", {
@@ -64,4 +64,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../components/auth";
 import PostItem from "../components/PostItem";
 import postItem from "../components/PostItem";
-const index = () => {
+const Index = () => {
   const { token, username, logout } = useAuth();
 
   useEffect(() => {
@@ -120,4 +120,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

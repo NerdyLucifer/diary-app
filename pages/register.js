@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAuth } from "../components/auth";
 import Link from "next/link";
 
-const register = () => {
+const Register = () => {
   const { token } = useAuth();
   const router = useRouter();
   if (token) router.replace("/");
@@ -70,4 +70,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;
