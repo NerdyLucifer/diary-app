@@ -62,7 +62,7 @@ const Login = () => {
             </button>
           </form>
           <Link href="/register">
-            <a style={{ color: "blue" }}> Register</a>
+            <a style={{ color: "purple" }}> Register</a>
           </Link>
         </>
       )}
