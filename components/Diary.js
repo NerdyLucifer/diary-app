@@ -93,7 +93,7 @@ const Index = () => {
                 fontWeight: "bold",
               }}
             >
-              {username}'s Diary
+              {username}&apos;s Diary
             </h1>
             <div
               style={{
@@ -107,7 +107,7 @@ const Index = () => {
             >
               <Card style={{ width: "70%", minWidth: "250px" }}>
                 <Card.Header style={{ backgroundColor: "#CFF4FD" }}>
-                  <h3 style={{ fontWeight: "bold" }}>Today's Date: </h3>
+                  <h3 style={{ fontWeight: "bold" }}>Today&apos;s Date: </h3>
                   <h3 style={{ color: "green" }}>
                     {date.getDate().toString() +
                       "/" +
