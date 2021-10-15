@@ -54,7 +54,6 @@ const Login = () => {
       {!token && (
         <>
           <Card
-            style={{ width: "18rem" }}
             style={{ margin: "100px auto", width: "260px" }}
           >
             <h1 style={{ margin: "5px auto" }}>LOGIN</h1>
