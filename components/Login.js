@@ -86,7 +86,7 @@ const Login = () => {
                   width: "250px",
                 }}
               >
-                Email and password can't be empty !
+                Email and password can&apos;t be empty !
               </Alert>
             )}
 

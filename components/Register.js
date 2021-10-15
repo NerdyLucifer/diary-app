@@ -49,7 +49,7 @@ const Register = () => {
                 variant="danger"
                 style={{ margin: "5px auto", fontSize: "0.7rem" ,width:"250px"}}
               >
-                Name, email and password can't be empty !
+                Name, email and password can&apos;t be empty !
               </Alert>
             )}
 
