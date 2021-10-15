@@ -4,9 +4,9 @@ import { Card, Button } from "react-bootstrap";
 import { useAuth } from "../context/auth";
 import { FcBookmark } from "react-icons/fc";
 import { FiBookmark } from "react-icons/fi";
-const PostItem = ({ postID, content, date, deletePost, setPosts }) => {
+const PostItem = ({ postID, content, date, deletePost, setPosts, fav}) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [isfav, setIsfav] = useState(false);
+  const [isfav, setIsfav] = useState(fav==="1"?true:false)
   const { token } = useAuth();
   const [newContent, setNewContent] = useState(content);
   const editPost = async (postID) => {
@@ -28,6 +28,25 @@ const PostItem = ({ postID, content, date, deletePost, setPosts }) => {
       });
     setIsEdit(false);
   };
+
+  async function toggleFav(toggleTo) {
+    const value= toggleTo===false? "0":"1";
+    setIsfav(toggleTo)
+    await axios({
+      method: "put",
+      url: "https://diary-app-ash.herokuapp.com/" + postID + "?toggleFavTo=" + value,
+      headers: {
+        authorization: "Bearer " + token,
+      },
+    })
+      .then(async (res) => {
+        await setPosts(res.data);
+      })
+      .catch((err) => {
+        console.log("Error....");
+      });
+  }
+
   return (
     <Card style={{ width: "100%" }}>
       <Card.Header
@@ -42,9 +61,17 @@ const PostItem = ({ postID, content, date, deletePost, setPosts }) => {
           <h3 style={{ color: "green" }}>{date}</h3>
         </div>
         {isfav ? (
-          <FcBookmark type="button" fontSize="2.5rem" onClick={()=>setIsfav(false)}/>
+          <FcBookmark
+            type="button"
+            fontSize="2.5rem"
+            onClick={() => toggleFav(false)}
+          />
         ) : (
-          <FiBookmark type="button" fontSize="2.3rem" onClick={()=>setIsfav(true)}/>
+          <FiBookmark
+            type="button"
+            fontSize="2.3rem"
+            onClick={() => toggleFav(true)}
+          />
         )}
       </Card.Header>
       <Card.Body style={{ height: "180px" }}>

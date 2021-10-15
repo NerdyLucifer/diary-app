@@ -16,6 +16,8 @@ const Index = () => {
 
   const [posts, setPosts] = useState([]);
 
+  const [showFav, setShowFav] = useState(false);
+
   const getPosts = async () => {
     await axios({
       method: "get",
@@ -148,6 +150,7 @@ const Index = () => {
                 >
                   Entries
                 </h1>
+
                 <div>
                   {posts.length === 0 ? (
                     <h3
@@ -161,19 +164,45 @@ const Index = () => {
                       No entry to show!
                     </h3>
                   ) : (
-                    <div className="posts-container">
-                      {posts.map((post) => {
-                        return (
-                          <PostItem
-                            key={post.id}
-                            postID={post.id}
-                            date={post.date}
-                            content={post.content}
-                            setPosts={setPosts}
-                            deletePost={deletePost}
-                          />
-                        );
-                      })}
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <Button
+                        style={{ margin: "30px auto" }}
+                        type="button"
+                        onClick={() => setShowFav(!showFav)}
+                      >
+                        {!showFav ? "Show favourites" : "Show all"}
+                      </Button>
+                      <div className="posts-container">
+                        {!showFav
+                          ? posts.map((post) => {
+                              return (
+                                <PostItem
+                                  key={post.id}
+                                  postID={post.id}
+                                  date={post.date}
+                                  content={post.content}
+                                  fav={post.isFav}
+                                  setPosts={setPosts}
+                                  deletePost={deletePost}
+                                />
+                              );
+                            })
+                          : posts.map((post) => {
+                              if (post.isFav=="1") {
+                                return (
+                                  <PostItem
+                                    key={post.id}
+                                    postID={post.id}
+                                    date={post.date}
+                                    content={post.content}
+                                    fav={post.isFav}
+                                    setPosts={setPosts}
+                                    deletePost={deletePost}
+                                  />
+                                );
+                              }
+                            })}
+                      </div>
                     </div>
                   )}
                 </div>
