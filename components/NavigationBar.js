@@ -16,12 +16,6 @@ const NavigationBar = () => {
         <Container>
           <Navbar.Brand href="#home">Diary App</Navbar.Brand>
           <Nav className="me-auto">
-            {!token && (
-              <>
-                <Nav.Link href="/login">Login</Nav.Link>
-                <Nav.Link href="/register">Register</Nav.Link>
-              </>
-            )}
             {token && (
               <Button
                 variant="danger"
