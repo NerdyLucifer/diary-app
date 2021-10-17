@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { useAuth } from "../context/auth";
 // import Link from "next/link";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import {Card, Alert } from "react-bootstrap";
 const Login = () => {
   const { token, setToken, setUsername } = useAuth();
 
@@ -17,7 +17,7 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const responseGoogle = async (response) => {
-    // setIsLogin(true);
+    setIsLogin(true);
     const { profileObj } = response;
     const { name, email, imageUrl } = profileObj;
     // console.log(name, email, imageUrl);
@@ -34,31 +34,32 @@ const Login = () => {
       setUsername(loginUser.name);
       setToken(accessToken);
     });
-    // setIsLogin(false);
+    setIsLogin(false);
   };
 
   return (
     <>
       {!token && (
         <>
-          <Card style={{ margin: "100px auto", width: "260px" }}>
+          {isLogin && (
+            <Alert
+              variant="success"
+              style={{ margin: "80px auto 10px auto", fontSize: "1.5rem", width: "250px" , textAlign:"center", fontWeight:"bold"}}
+            >
+              Logging in...
+            </Alert>
+          )}
+          <Card style={{ margin: "50px auto", width: "260px" }}>
             <h1 style={{ margin: "5px auto" }}>LOGIN</h1>
-            {isLogin && (
-              <Alert
-                variant="success"
-                style={{ margin: "5px auto", fontSize: "1rem", width: "250px" }}
-              >
-                Logging in...
-              </Alert>
-            )}
-            <Card.Body>
+
+            <Card.Body style={{display:"flex", flexDirection:"column"}}>
               <GoogleLogin
                 clientId="377569769183-qitlt5d2km5iavm9rnk0s6efe9d7918j.apps.googleusercontent.com"
                 buttonText="Login with Google"
-                onSuccess={()=>responseGoogle}
-                onFailure={()=>responseGoogle}
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
                 cookiePolicy={"single_host_origin"}
-                style={{ margin: "auto" }}
+                style={{width:"100%"}}
               />
             </Card.Body>
           </Card>
