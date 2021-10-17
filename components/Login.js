@@ -17,7 +17,7 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const responseGoogle = async (response) => {
-    setIsLogin(true);
+    // setIsLogin(true);
     const { profileObj } = response;
     const { name, email, imageUrl } = profileObj;
     // console.log(name, email, imageUrl);
@@ -34,7 +34,7 @@ const Login = () => {
       setUsername(loginUser.name);
       setToken(accessToken);
     });
-    setIsLogin(false);
+    // setIsLogin(false);
   };
 
   return (
