@@ -59,7 +59,7 @@ const Login = () => {
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={"single_host_origin"}
-                style={{width:"100%"}}
+                style={{width:"100%",backgroundColor:"black", color:"white"}}
               />
             </Card.Body>
           </Card>
